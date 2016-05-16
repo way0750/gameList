@@ -17,7 +17,8 @@ import TopBar from '../../topBar/topBar.js';
 const chatRoom = React.createClass({
   getInitialState(){
     return {
-      comments: this.props.entry.comments
+      comments: this.props.entry.comments,
+      editing: false
     };
   },
   addNewCommnet(event){
@@ -28,33 +29,41 @@ const chatRoom = React.createClass({
     }
     this.component.clear();
   },
+  makeDynStyle(){
+    return {
+      alignItems: 'center',
+      marginTop: this.state.editing ? -300 : 10
+    };
+  },
   render() {
+    let containerStyle = this.makeDynStyle();
     return (
       <View
-      style={styles.chatRoomContainer}
-      >
+        style={containerStyle} >
+
       <TouchableOpacity 
-      onPress = {() => {
-        this.props.navigator.pop();
-      }}
-      >
-      <TopBar 
-      chatRoom = {this.props.entry.name}
-      />
+        onPress = {() => {
+          this.props.navigator.pop();
+        }}>
+        <TopBar 
+          chatRoom = {this.props.entry.name}
+          toNavigate = { () => {
+            this.props.navigator.pop();
+          }} />
       </TouchableOpacity>
-        <Image
-          style={styles.image}
-          source={{uri: this.props.entry.image}}
-        />
+
+      <Image
+        style={styles.image}
+        source={{uri: this.props.entry.image}} />
+
       <Text 
-      style={styles.caption}      
-      >
+        style={styles.caption} >
       {this.props.entry.caption}
       </Text>
+
       <ScrollView 
-      thisIsWhereTheCommentsGo={true}
-      style={styles.comments}
-      >
+        thisIsWhereTheCommentsGo={true}
+        style={styles.comments} >
         {this.state.comments.map( (comment, index)=> {
           return (
             <Text 
@@ -65,11 +74,17 @@ const chatRoom = React.createClass({
             </Text>);
         })}
       </ScrollView>
+
       <TextInput
-      ref = {(component) => {this.component = component;}}
-      onSubmitEditing={ (eventObj) => {this.addNewCommnet(eventObj);}}
-      style={styles.userInput}
-      />
+        ref = {(component) => {this.component = component;}}
+        onSubmitEditing={ (eventObj) => {this.addNewCommnet(eventObj);}}
+        style={styles.userInput} 
+        onBlur = {() => {
+          this.setState({editing: false});
+        }}
+        onFocus = {() => {
+          this.setState({editing: true});
+        }}  />
       </View>
       );
   }
@@ -103,7 +118,7 @@ const styles = StyleSheet.create({
     borderColor: 'aqua'    
   },
   comments: {
-    height: 270,
+    height: 320,
     width: 380
   },
   singleComment: {

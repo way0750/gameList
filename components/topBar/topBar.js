@@ -15,13 +15,13 @@ const topBar = React.createClass({
     return (
       <View style={styles.topBar}>
         <Text>
-        {'<<'}
+        {'Back'}
         </Text>
-        <Text>
+        <Text >
         {this.props.chatRoom}
         </Text>
         <Text>
-        {'  '}
+        {'\t'}
         </Text>
 
       </View>
