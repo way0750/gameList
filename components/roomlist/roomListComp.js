@@ -5,9 +5,9 @@ import {
   Text,
   View,
   TextInput,
-  Alert,
   ListView,
-  Image
+  Image,
+  ScrollView
 } from 'react-native';
 
 import ChatRoom from './chatroom/chatRoom.js';
@@ -43,7 +43,7 @@ const RoomList = React.createClass({
             this.props.navigator.push({route: 'chatRoom', component: ChatRoom, entry: entry});
           }}
           > 
-          {entry.thumbnail}
+          {entry.name}
           </Text>
           </View>
 
@@ -68,28 +68,7 @@ const styles = StyleSheet.create({
   image: {
     // transform: [{scale: 25}],
     width: 100,
-    height: 100,
-    borderWidth: 6,
-    borderStyle: 'solid',
-    borderColor: 'red'
-  },
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-    borderWidth: 6,
-    borderStyle: 'solid',
-    borderColor: 'red'
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-    borderWidth: 6,
-    height: 40,
-    borderStyle: 'solid',
-    borderColor: 'blue',
+    height: 100
   },
   listContainer: {
     marginBottom: 5,

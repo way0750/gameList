@@ -7,26 +7,61 @@ import {
   TextInput,
   Alert,
   ListView,
-  Image
+  Image,
+  ScrollView
 } from 'react-native';
 
 
 const chatRoom = React.createClass({
+  getInitialState(){
+    return {
+      comments: this.props.entry.comments
+    };
+  },
+  addNewCommnet(event){
+    let newText = event.nativeEvent.text.trim();
+    if (newText) {
+      var comments = [event.nativeEvent.text].concat(this.state.comments);
+      this.setState({comments: comments});
+    }
+    this.component.clear();
+  },
   render() {
     return (
-      <View>
+      <View
+      style={styles.chatRoomContainer}
+      >
         <Image
-          source={{uri: 'http://facebook.github.io/react/img/logo_og.png'}}
+          style={styles.image}
+          source={{uri: this.props.entry.image}}
         />
       <Text 
-      style={styles.instructions}
+      style={styles.caption}
       onPress={ () => {
         this.props.navigator.pop();
       }}
       >
-        this is going to be the chat room{'\n'}
-        {this.props.entry.name}
+        {this.props.entry.caption}
       </Text>
+      <ScrollView 
+      thisIsWhereTheCommentsGo={true}
+      style={styles.comments}
+      >
+        {this.state.comments.map( (comment, index)=> {
+          return (
+            <Text 
+            key={index}
+            style={styles.singleComment}
+            > 
+              {comment}
+            </Text>);
+        })}
+      </ScrollView>
+      <TextInput
+      ref = {(component) => {this.component = component;}}
+      onSubmitEditing={ (eventObj) => {this.addNewCommnet(eventObj);}}
+      style={styles.userInput}
+      />
       </View>
       );
   }
@@ -34,6 +69,24 @@ const chatRoom = React.createClass({
 
 
 const styles = StyleSheet.create({
+  chatRoomContainer: {
+    marginTop: 20,
+    alignItems: 'center'
+  },
+  userInput: {
+
+    width: 414,
+    height: 60,
+    borderWidth: 1,
+    borderStyle: 'solid',
+    borderColor: 'aqua'    
+  },
+  image: {
+    // transform: [{scale: 2}],
+    opacity: 0.7,
+    width: 414,
+    height: 200
+  },
   entry: {
     lineHeight: 40,
     marginTop: 10,
@@ -42,34 +95,24 @@ const styles = StyleSheet.create({
     borderStyle: 'solid',
     borderColor: 'aqua'    
   },
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-    borderWidth: 6,
-    borderStyle: 'solid',
-    borderColor: 'red'
+  comments: {
+    height: 270,
+    width: 380
   },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-    borderWidth: 6,
-    height: 40,
-    borderStyle: 'solid',
-    borderColor: 'blue',
+  singleComment: {
+    marginTop: 10
   },
-  instructions: {
+  caption: {
     textAlign: 'center',
     color: '#333333',
     marginBottom: 5,
     borderWidth: 6,
     fontSize: 15,
+    width: 380,
+    height: 100,
     lineHeight: 30,
     borderStyle: 'solid',
-    borderColor: 'yellow',
-    marginTop: 50
+    borderColor: 'yellow'
   },
 });
 
