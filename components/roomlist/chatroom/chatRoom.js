@@ -8,9 +8,11 @@ import {
   Alert,
   ListView,
   Image,
-  ScrollView
+  ScrollView,
+  TouchableOpacity
 } from 'react-native';
 
+import TopBar from '../../topBar/topBar.js';
 
 const chatRoom = React.createClass({
   getInitialState(){
@@ -31,17 +33,23 @@ const chatRoom = React.createClass({
       <View
       style={styles.chatRoomContainer}
       >
+      <TouchableOpacity 
+      onPress = {() => {
+        this.props.navigator.pop();
+      }}
+      >
+      <TopBar 
+      chatRoom = {this.props.entry.name}
+      />
+      </TouchableOpacity>
         <Image
           style={styles.image}
           source={{uri: this.props.entry.image}}
         />
       <Text 
-      style={styles.caption}
-      onPress={ () => {
-        this.props.navigator.pop();
-      }}
+      style={styles.caption}      
       >
-        {this.props.entry.caption}
+      {this.props.entry.caption}
       </Text>
       <ScrollView 
       thisIsWhereTheCommentsGo={true}
@@ -70,11 +78,9 @@ const chatRoom = React.createClass({
 
 const styles = StyleSheet.create({
   chatRoomContainer: {
-    marginTop: 20,
     alignItems: 'center'
   },
   userInput: {
-
     width: 414,
     height: 60,
     borderWidth: 1,
@@ -83,7 +89,8 @@ const styles = StyleSheet.create({
   },
   image: {
     // transform: [{scale: 2}],
-    opacity: 0.7,
+    marginTop: 0,
+    opacity: 1,
     width: 414,
     height: 200
   },

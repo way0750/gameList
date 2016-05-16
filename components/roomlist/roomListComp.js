@@ -11,7 +11,7 @@ import {
 } from 'react-native';
 
 import ChatRoom from './chatroom/chatRoom.js';
-
+import TopBar from '../topBar/topBar.js';
 const RoomList = React.createClass({
   getInitialState(){
     let dataSource = new ListView.DataSource({
@@ -49,8 +49,7 @@ const RoomList = React.createClass({
 
           );
       }}
-      >
-      </ListView>
+      />
       );
   }
 });

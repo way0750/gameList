@@ -18,7 +18,6 @@ import {
 
 import RoomList from './components/roomlist/roomListComp.js';
 import gameData from './data/games.js';
-
 const game = React.createClass({
   getInitialState(){
     return {gameData: gameData};
