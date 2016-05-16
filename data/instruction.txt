@@ -1,0 +1,7 @@
+1. First, download the resources at the following link: http://plexchat.com/resources/SimpleNavigationAssets.zip
+2. Next, familiarize yourself with React Native (https://facebook.github.io/react-native/) to accomplish the following tasks.
+3. Populate a list view (React.ListView) given the entries of the games.json file.
+4. The list view cells should display the 'thumbnail' image as well as the game 'name' as they are defined in games.json (see wireframe).
+5. When a game is selected a new game view should be pushed onto the navigation view.
+6. The game view will display the 'image', 'caption', and 'comments' as they are defined in games.json (see wireframe).
+7. A text input box at the bottom of the screen will allow the user to add a comment (don't worry about saving or persisting the new comment, it can disappear when you return to the game list).
