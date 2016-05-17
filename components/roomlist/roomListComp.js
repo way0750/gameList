@@ -7,7 +7,8 @@ import {
   TextInput,
   ListView,
   Image,
-  ScrollView
+  ScrollView,
+  TouchableOpacity
 } from 'react-native';
 
 import ChatRoom from './chatroom/chatRoom.js';
@@ -30,23 +31,30 @@ const RoomList = React.createClass({
       dataSource = {this.state.dataSource.cloneWithRows(this.props.gameData)}
       renderRow = { (entry) => {
         return (
-          <View
+          <TouchableOpacity
+              onPress={ () => {
+                this.props.navigator.push({route: 'chatRoom', component: ChatRoom, entry: entry});
+              }}>
+          <View 
+          style = {styles.entry}
           >
-          <Image
-            style={styles.image}
-            source={{uri: entry.thumbnail}}
-          />
+            <Image
+              style={styles.image}
+              source={{uri: entry.thumbnail}}
+            />
 
-          <Text 
-          style={styles.entry}
-          onPress={ () => {
-            this.props.navigator.push({route: 'chatRoom', component: ChatRoom, entry: entry});
-          }}
-          > 
-          {entry.name}
-          </Text>
+            <Text 
+            style={styles.name}
+            > 
+            {entry.name}
+            </Text>
+            <Text
+            style = {styles.entryArrow}
+            >
+              >>>
+            </Text>
           </View>
-
+          </TouchableOpacity>
           );
       }}
       />
@@ -56,13 +64,24 @@ const RoomList = React.createClass({
 
 
 const styles = StyleSheet.create({
+  entryArrow: {
+    width: 50,
+    backgroundColor: 'green'
+  },
   entry: {
-    lineHeight: 40,
-    marginTop: 10,
-    fontSize: 30,
+    // lineHeight: 40,
+    // marginTop: 10,
     borderWidth: 6,
     borderStyle: 'solid',
-    borderColor: 'aqua'    
+    borderColor: 'aqua',    
+    padding: 20,
+    flexDirection: 'row',
+    justifyContent: 'space-between'
+  },
+  name: {
+    width: 200,
+    fontSize: 30,
+    flexWrap: "wrap"
   },
   image: {
     // transform: [{scale: 25}],
@@ -70,11 +89,7 @@ const styles = StyleSheet.create({
     height: 100
   },
   listContainer: {
-    marginBottom: 5,
-    borderWidth: 6,
-    borderStyle: 'solid',
-    borderColor: 'yellow',
-    marginTop: 50
+    marginTop: 20,
   },
 });
 
