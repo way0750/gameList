@@ -14,10 +14,11 @@ const topBar = React.createClass({
   render(){
     return (
       <View style={styles.topBar}>
-        <Text>
+        <Text style={styles.chatRoom}>
         {'Back'}
         </Text>
-        <Text >
+        <Text 
+        style={styles.chatRoom}>
         {this.props.chatRoom}
         </Text>
         <Text>
@@ -30,34 +31,19 @@ const topBar = React.createClass({
 });
 
 const styles = StyleSheet.create({
+  chatRoom: {
+    fontSize: 20,
+    opacity: 0.9,
+    fontFamily: 'MarkerFelt-Wide'
+  },
   topBar: {
-    marginTop: 20,
+    marginTop: 10,
     padding: 10,
     width: 430,
     flexDirection: 'row',
     justifyContent: 'space-around',
-    backgroundColor: '#33FFCC'
-  },
-  entry: {
-    lineHeight: 40,
-    marginTop: 10,
-    fontSize: 30,
-    borderWidth: 6,
-    borderStyle: 'solid',
-    borderColor: 'aqua'    
-  },
-  image: {
-    // transform: [{scale: 25}],
-    width: 100,
-    height: 100
-  },
-  listContainer: {
-    marginBottom: 5,
-    borderWidth: 6,
-    borderStyle: 'solid',
-    borderColor: 'yellow',
-    marginTop: 50
-  },
+    backgroundColor: '#2cbaba'
+  }
 });
 
 

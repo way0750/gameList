@@ -38,6 +38,7 @@ const game = React.createClass({
 
   render() {
     return (<Navigator
+      style={styles.main}
       initialRoute={{route: 'mainList', component: RoomList}}
       renderScene={this.renderScene}
       />);
@@ -45,35 +46,9 @@ const game = React.createClass({
 });
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-    borderWidth: 6,
-    borderStyle: 'solid',
-    borderColor: 'red'
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-    borderWidth: 6,
-    height: 40,
-    borderStyle: 'solid',
-    borderColor: 'blue',
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-    borderWidth: 6,
-    fontSize: 15,
-    lineHeight: 30,
-    borderStyle: 'solid',
-    borderColor: 'yellow',
-    marginTop: 50
-  },
+  main: {
+    backgroundColor: '#55d6d7'
+  }
 });
 
 AppRegistry.registerComponent('game', () => game);

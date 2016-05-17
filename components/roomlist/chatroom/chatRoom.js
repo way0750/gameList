@@ -9,7 +9,8 @@ import {
   ListView,
   Image,
   ScrollView,
-  TouchableOpacity
+  TouchableOpacity,
+  StatusBar
 } from 'react-native';
 
 import TopBar from '../../topBar/topBar.js';
@@ -41,7 +42,9 @@ const chatRoom = React.createClass({
     return (
       <View
         style={containerStyle} >
-
+     <StatusBar
+       hidden = {true}
+      />
       <TouchableOpacity 
         onPress = {() => {
           this.props.navigator.pop();
@@ -58,7 +61,7 @@ const chatRoom = React.createClass({
         source={{uri: this.props.entry.image}} />
       <ScrollView
       style={styles.captionContainer} >
-        <Text>
+        <Text style={styles.captionText}>
         {this.props.entry.caption}
         </Text>
       </ScrollView>
@@ -107,7 +110,8 @@ const styles = StyleSheet.create({
     borderBottomWidth: 5,
     borderStyle: 'solid',
     borderColor: '#33FFCC',
-    backgroundColor: '#c2fcc2'
+    backgroundColor: '#98e7e7',
+    fontSize: 18,
   },
   image: {
     marginTop: 0,
@@ -121,27 +125,29 @@ const styles = StyleSheet.create({
     fontSize: 30,
     borderWidth: 6,
     borderStyle: 'solid',
-    borderColor: 'aqua'    
+    borderColor: '#00cc00'    
   },
   comments: {
     height: 320,
     width: 415,
-    backgroundColor: '#99FF99',
+    backgroundColor: '#229191',
     borderLeftWidth: 30,
     borderRightWidth: 30,
     borderTopWidth: 10,
     borderBottomWidth: 10,
     borderStyle: 'solid',
-    borderColor: '#99FF99'
+    borderColor: '#229191'
   },
   singleComment: {
     marginTop: 5,
     marginBottom: 5,
-    backgroundColor: '#c2fcc2',
-    padding: 5
+    backgroundColor: '#135353',
+    color: '#d6f5f5',
+    padding: 5,
+    fontSize: 18,
   },
   captionContainer: {
-    backgroundColor: '#33FFCC',
+    backgroundColor: '#83e2e2',
     width: 415,
     height: 100,
     borderLeftWidth: 30,
@@ -149,8 +155,12 @@ const styles = StyleSheet.create({
     borderTopWidth: 10,
     borderBottomWidth: 10,
     borderStyle: 'solid',
-    borderColor: '#33FFCC'
+    borderColor: '#83e2e2'
   },
+  captionText: {
+    fontSize: 18,
+    color: '#0a2929'
+  }
 });
 
 

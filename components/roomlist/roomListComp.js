@@ -8,7 +8,8 @@ import {
   ListView,
   Image,
   ScrollView,
-  TouchableOpacity
+  TouchableOpacity,
+  StatusBar
 } from 'react-native';
 
 import ChatRoom from './chatroom/chatRoom.js';
@@ -38,6 +39,8 @@ const RoomList = React.createClass({
           <View 
           style = {styles.entry}
           >
+          <StatusBar 
+            hidden = {true} />
             <Image
               style={styles.image}
               source={{uri: entry.thumbnail}}
@@ -67,16 +70,15 @@ const styles = StyleSheet.create({
   entryArrow: {
     width: 50,
     fontSize: 30,
-    // backgroundColor: 'green',
     flexDirection: 'row',
     alignSelf: 'center'
   },
   entry: {
     borderWidth: 6,
     borderStyle: 'solid',
-    borderColor: '#70dbdb',    
+    borderColor: '#adebeb',    
     padding: 20,
-    backgroundColor: '#33cccc',
+    backgroundColor: '#5cd6d6',
     flexDirection: 'row',
     justifyContent: 'space-between'
   },
@@ -84,7 +86,9 @@ const styles = StyleSheet.create({
     width: 200,
     fontSize: 30,
     flexDirection: 'row',
-    alignSelf: 'center'
+    alignSelf: 'center',
+    fontFamily: 'MarkerFelt-Wide',
+    opacity: 0.9
   },
   image: {
     width: 100,
