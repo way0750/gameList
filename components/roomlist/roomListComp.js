@@ -51,7 +51,7 @@ const RoomList = React.createClass({
             <Text
             style = {styles.entryArrow}
             >
-              >>>
+              ▶
             </Text>
           </View>
           </TouchableOpacity>
@@ -61,30 +61,32 @@ const RoomList = React.createClass({
       );
   }
 });
-
+// '▷►➳ ➽▶▶ ▷►'
 
 const styles = StyleSheet.create({
   entryArrow: {
     width: 50,
-    backgroundColor: 'green'
+    fontSize: 30,
+    // backgroundColor: 'green',
+    flexDirection: 'row',
+    alignSelf: 'center'
   },
   entry: {
-    // lineHeight: 40,
-    // marginTop: 10,
     borderWidth: 6,
     borderStyle: 'solid',
-    borderColor: 'aqua',    
+    borderColor: '#70dbdb',    
     padding: 20,
+    backgroundColor: '#33cccc',
     flexDirection: 'row',
     justifyContent: 'space-between'
   },
   name: {
     width: 200,
     fontSize: 30,
-    flexWrap: "wrap"
+    flexDirection: 'row',
+    alignSelf: 'center'
   },
   image: {
-    // transform: [{scale: 25}],
     width: 100,
     height: 100
   },
