@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
     width: 430,
     flexDirection: 'row',
     justifyContent: 'space-around',
-    backgroundColor: 'aqua'
+    backgroundColor: '#33FFCC'
   },
   entry: {
     lineHeight: 40,

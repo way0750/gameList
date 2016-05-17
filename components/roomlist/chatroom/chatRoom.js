@@ -27,7 +27,8 @@ const chatRoom = React.createClass({
       var comments = [event.nativeEvent.text].concat(this.state.comments);
       this.setState({comments: comments});
     }
-    this.component.clear();
+    this.inputComponent.clear();
+    this.commentCompoent.scrollTo({y: 0, animated: false});
   },
   makeDynStyle(){
     return {
@@ -55,28 +56,30 @@ const chatRoom = React.createClass({
       <Image
         style={styles.image}
         source={{uri: this.props.entry.image}} />
+      <ScrollView
+      style={styles.captionContainer} >
+        <Text>
+        {this.props.entry.caption}
+        </Text>
+      </ScrollView>
 
-      <Text 
-        style={styles.caption} >
-      {this.props.entry.caption}
-      </Text>
-
-      <ScrollView 
-        thisIsWhereTheCommentsGo={true}
+      <ScrollView
+        ref={(scrollView) => { this.commentCompoent = scrollView;}} 
         style={styles.comments} >
         {this.state.comments.map( (comment, index)=> {
           return (
-            <Text 
+            <Text
             key={index}
             style={styles.singleComment}
             > 
               {comment}
             </Text>);
         })}
+
       </ScrollView>
 
       <TextInput
-        ref = {(component) => {this.component = component;}}
+        ref = {(component) => {this.inputComponent = component;}}
         onSubmitEditing={ (eventObj) => {this.addNewCommnet(eventObj);}}
         style={styles.userInput} 
         onBlur = {() => {
@@ -103,7 +106,6 @@ const styles = StyleSheet.create({
     borderColor: 'aqua'    
   },
   image: {
-    // transform: [{scale: 2}],
     marginTop: 0,
     opacity: 1,
     width: 414,
@@ -122,19 +124,20 @@ const styles = StyleSheet.create({
     width: 380
   },
   singleComment: {
-    marginTop: 10
+    marginTop: 15,
+    marginBottom: 15,
   },
-  caption: {
-    textAlign: 'center',
-    color: '#333333',
+  captionContainer: {
+    backgroundColor: '#33FFCC',
     marginBottom: 5,
-    borderWidth: 6,
-    fontSize: 15,
-    width: 380,
+    width: 415,
     height: 100,
-    lineHeight: 30,
+    borderLeftWidth: 30,
+    borderRightWidth: 30,
+    borderTopWidth: 10,
+    borderBottomWidth: 10,
     borderStyle: 'solid',
-    borderColor: 'yellow'
+    borderColor: '#33FFCC'
   },
 });
 
