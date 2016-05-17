@@ -79,6 +79,7 @@ const chatRoom = React.createClass({
       </ScrollView>
 
       <TextInput
+        placeholder = "-->> your 2 cents !"
         ref = {(component) => {this.inputComponent = component;}}
         onSubmitEditing={ (eventObj) => {this.addNewCommnet(eventObj);}}
         style={styles.userInput} 
@@ -99,11 +100,14 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   userInput: {
+    marginTop: -5,
     width: 414,
     height: 60,
-    borderWidth: 1,
+    borderTopWidth: 5,
+    borderBottomWidth: 5,
     borderStyle: 'solid',
-    borderColor: 'aqua'    
+    borderColor: '#33FFCC',
+    backgroundColor: '#c2fcc2'
   },
   image: {
     marginTop: 0,
@@ -121,15 +125,23 @@ const styles = StyleSheet.create({
   },
   comments: {
     height: 320,
-    width: 380
+    width: 415,
+    backgroundColor: '#99FF99',
+    borderLeftWidth: 30,
+    borderRightWidth: 30,
+    borderTopWidth: 10,
+    borderBottomWidth: 10,
+    borderStyle: 'solid',
+    borderColor: '#99FF99'
   },
   singleComment: {
-    marginTop: 15,
-    marginBottom: 15,
+    marginTop: 5,
+    marginBottom: 5,
+    backgroundColor: '#c2fcc2',
+    padding: 5
   },
   captionContainer: {
     backgroundColor: '#33FFCC',
-    marginBottom: 5,
     width: 415,
     height: 100,
     borderLeftWidth: 30,
